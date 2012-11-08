@@ -57,9 +57,9 @@ class Button {
     case BUTTON_TYPE_NULL:
       return "Main Menu";
     case BUTTON_TYPE_CHALLENGE_1:
-      return "1-Player Challenge";
+      return "1-Player Putty Match";
     case BUTTON_TYPE_CHALLENGE_2:
-      return "2-Player Challenge";
+      return "2-Player Putty Match";
     case BUTTON_TYPE_GARDEN_1:
       return "Garden Mode";
     case BUTTON_TYPE_GARDEN_2:
@@ -109,7 +109,7 @@ class Button {
   }
   public void draw() {
     //draw box
-    textFont(font, h/2);
+    textFont(font, h/2.5);
     textAlign(CENTER);
     if (hovered) {
       fill(selectBgColor);

@@ -104,16 +104,11 @@ void setup() {
   //set up audio
   Sonia.start(this);
 
-  /*for (int i=0;i<audioPaths.length;i++) {
-   audioPaths[i] = "sounds/"+audioPaths[i];
-   }*/
   for (int i=0;i<maxPlayers;i++) {
     for (int j=0;j<pinsPerPlayer;j++) {      
 
       voices[i][j] = new Sample(audioPaths[(j+i*pinsPerPlayer)%audioPaths.length]);
       voices[i][j].setVolume(1.5);
-      //filters[i][j] = new PitchShift(1);
-      //filters[i][j].filter(voices[i][j]);
     }
   }
   winChime = new Sample("winner.wav");
@@ -191,7 +186,7 @@ void draw() {
   
   //animate drifting shapes
   for(int i = 0; i<drifters.length;i++){
-    drifters[i].x+= width/40;
+    drifters[i].x+= width/60;
     if(drifters[i].x > width+height/16){
       drifters[i].x = -height/16;
       drifters[i].y = random(height);
@@ -269,7 +264,7 @@ void draw() {
     float radius = height/2 - height/8;
     float originX = width*3/5;
     float originY = height/2;
-    float angleOffset = -PI/2;
+    float angleOffset = -PI/3.5;
 
     //background
     fill(255);
@@ -465,7 +460,8 @@ boolean challengeCheckForScoring(int player) {
 
 void challengeNewRound() {
   //add cooldown period, reduces in length as the challenge increases
-  countDownTimer = 3* ceil(frameRate) * (currentTimerMax/timerMax);
+  println(currentTimerMax/timerMax);
+  countDownTimer = int(3* ceil(frameRate)* (float(currentTimerMax)/float(timerMax)));
   //start new round
   rounds++;
   
